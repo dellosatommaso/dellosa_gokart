@@ -1,0 +1,37 @@
+package com.example;
+
+public class Spogliatoio(){
+    private int ns;
+
+    public Spogliatoio(int ns){
+        this.ns = ns;
+    }
+
+    public int synchronized entraSpogliatoio(){
+        try{
+            System.out.println("Il pilota " + Thread.currentThread().getNome + " entra nello spogliatoio");
+            ns++;
+            int sSpogliatoio = (int) ((Math.random()+4)*2)*1000;    
+            return sSpogliatoio;        
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace;
+        }
+    }
+
+    public void synchronized esciSpogliatoio(){
+        try{
+            System.out.println("Il pilota " + Thread.currentThread().getNome + " esce dallo spogliatoio");
+            ns--;
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace;
+        }
+    }
+
+    
+
+    
+}

@@ -1,0 +1,54 @@
+package com.example;
+
+public class Pista(){
+    private int np;
+    private int g;
+
+    public Spogliatoio(int np, int g){
+        this.np = np;
+        this.g = g;
+    }
+
+    public void getNp(){
+        return np;
+    }
+
+    public String setNp(int np){
+        this.np = np;
+    }
+
+    public void getG(){
+        return g;
+    }
+
+    public String setG(int g){
+        this.g = g;
+    }
+
+    public void synchronized entraPista(){
+        try{           
+            System.out.println("Il pilota " + Thread.currentThread().getNome + " entra in pista");
+            np++;
+            for(int i = 0; i <= 5; i++){
+                int sPista = (int) ((Math.random()+2)*1)*1000;
+                this.wait(sPista);
+                System.out.println("Il pilota " + Thread.currentThread().getNome + " effettua il giro " + (i+1));
+            }
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace;
+        }
+    }
+
+    public void synchronized esciPista(){
+        try{           
+            System.out.println("Il pilota " + Thread.currentThread().getNome + " esce dalla pista");
+            np--;
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace;
+        }
+    }
+}

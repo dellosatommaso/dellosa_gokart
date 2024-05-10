@@ -1,0 +1,45 @@
+package com.example;
+
+public class Pilota extends Thread(){
+    private String nome;
+
+    public Pilota(String nome){
+        this.nome = nome;        
+    }
+
+    public void getNome(){
+        return nome;
+    }
+
+    public String setNome(String nome){
+        this.nome = nome;
+    }
+    
+    @Override
+    public void run(){
+        try{
+            if(ns != 2){
+                Thread.entraSpogliatoio();
+                this.wait(sSpogliatoio);
+                this.esciSpogliatoio();
+                
+                if(np != 4){
+                    Thread.entraPista();
+                    this.esciPista();
+                    this.entraSpogliatoio();
+                    this.wait(sSpogliatoio);
+                    this.esciSpogliatoio();
+                }else{
+                    sleep(3000);
+                }
+            }
+            else{
+                sleep(2000);
+            }
+        }
+        catch(InterruptedException e)
+        {
+            e.printStackTrace;
+        }
+    }
+}
